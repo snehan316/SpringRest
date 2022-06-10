@@ -30,5 +30,18 @@ public class EmployeeController {
 		return "employee-list";
 	}
 	
+	@GetMapping("/showFormForAdd")
+	public String showFormForAdd(Model theModel) {
+		
+		Employee theEmployee = new Employee();
+		theModel.addAttribute("employee", theEmployee);
+		return "employee-form";
+	}
 	
+	@PostMapping("/saveEmployee")
+	public String saveEmployee(@ModelAttribute("employee") Employee theEmployee) {
+		
+		dao.saveEmployee(theEmployee);
+		return "redirect:/employee/list";
+	}
 }
