@@ -24,16 +24,20 @@
 					<th>First Name</th>
 					<th>Last Name</th>
 					<th>Email</th>
+					<th>Action</th>
 
 				</tr>
 				<c:forEach var="temp" items="${employees}">
+				
+				<c:url var="updateLink" value="/employee/showFormForUpdate">
+					<c:param name="empId" value="${temp.id}"/>
+				</c:url>
 
 					<tr>
 						<td>${temp.firstName}</td>
 						<td>${temp.lastName}</td>
 						<td>${temp.email}</td>
-
-
+						<td><a href="${updateLink}">Update</a></td>
 					</tr>
 				</c:forEach>
 			</table>

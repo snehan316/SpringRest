@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sneha.springdemo.dao.EmployeeDAO;
 import com.sneha.springdemo.entity.Employee;
@@ -43,5 +44,12 @@ public class EmployeeController {
 		
 		dao.saveEmployee(theEmployee);
 		return "redirect:/employee/list";
+	}
+	
+	@GetMapping("/showFormForUpdate")
+	public String showFormForUpdate(@RequestParam("empId") int theId, Model theModel) {
+		Employee theEmployee = dao.getEmployee(theId);
+		theModel.addAttribute("employee", theEmployee);
+		return "employee-form";
 	}
 }
